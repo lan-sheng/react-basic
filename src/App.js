@@ -1,15 +1,12 @@
-const list = [
-  { id: 1001, name: 'vue1' },
-  { id: 1002, name: 'vue2' },
-  { id: 1003, name: 'vue3' },
-]
+const isLogin = true
+// const isLogin = false
 function App() {
   return (
     <div className="App">
-      this is app
-      <ul>
-        {list.map(item => <li key={item.id}>{ item.name}</li>)}
-     </ul>
+      {/* && */}
+      {isLogin && <span>this is span</span>}
+      {/* 三元运算 */}
+      {isLogin ? <span>jack</span> : <span>login...</span>}
     </div>
   )
 }
