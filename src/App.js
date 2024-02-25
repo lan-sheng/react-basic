@@ -1,17 +1,24 @@
-const articleType = 2 // 0 1 2
-
-function getArticleTem() {
-  if (articleType === 0) {
-    return <div>我是无图模式</div>
-  } else if (articleType === 1) {
-    return <div>我是单图模式</div>
-  } else {
-    return <div>我是二图模式</div>
-  }
+// const handleClick = () => {
+//   console.log('button被点击了')
+// }
+// 事件参数
+// const handleClick = (e) => {
+//   console.log('button被点击了',e)
+// }
+// 传递自定义参数
+// const handleClick = name => {
+//   console.log('button被点击了', name)
+// }
+// 既传递自定义参数又传递事件对象e
+const handleClick = (name, e) => {
+  console.log('button被点击了', name, e)
 }
-
 function App() {
-  return <div className="App">{getArticleTem()}</div>
+  return (
+    <div className="App">
+      <button onClick={e => handleClick('aaa', e)}>click me</button>
+    </div>
+  )
 }
 
 export default App
