@@ -1,23 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-function Son() {
-  useEffect(() => {
-    const timer = setInterval(() => {
-      console.log('定时器')
-    }, 1000)
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
-  return <div>this is Son</div>
+function useToggle() {
+  const [value, setValue] = useState(true)
+  const toggle = () => setValue(!value)
+  return { value, toggle }
 }
 
 function App() {
-  const [show, setShow] = useState(true)
+  const { value, toggle } = useToggle()
   return (
     <div className="App">
-      {show && <Son />}
-      <button onClick={() => setShow(false)}>卸载son</button>
+      <button onClick={toggle}>toggle</button>
+      {value && <div>this is div</div>}
     </div>
   )
 }
