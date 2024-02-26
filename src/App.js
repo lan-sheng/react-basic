@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  // useEffect(() => {
-  //   console.log('aaa')
-  // })
-  // useEffect(() => {
-  //   console.log('aaa')
-  // },[])
+function Son() {
   useEffect(() => {
-    console.log('aaa')
-  }, [count])
+    const timer = setInterval(() => {
+      console.log('定时器')
+    }, 1000)
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
+  return <div>this is Son</div>
+}
+
+function App() {
+  const [show, setShow] = useState(true)
   return (
     <div className="App">
-      <div> {count}</div>
-      <button onClick={() => setCount(count + 1)}>+</button>
+      {show && <Son />}
+      <button onClick={() => setShow(false)}>卸载son</button>
     </div>
   )
 }
