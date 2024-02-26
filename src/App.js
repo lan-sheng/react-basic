@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useRef } from 'react'
 
 function App() {
-  const [value, setValue] = useState('')
+  const inputRef = useRef(null)
+  const showDom = () => {
+    console.log(inputRef.current)
+  }
   return (
     <div className="App">
-      <input type="text" value={value} onChange={e => setValue(e.target.value)} />
+      <input type="text" ref={inputRef} />
+      <button onClick={showDom}>获取dom</button>
     </div>
   )
 }
