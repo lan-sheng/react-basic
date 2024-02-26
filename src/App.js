@@ -1,27 +1,24 @@
-import { createContext, useContext, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-const MsgContext = createContext()
+const URL = 'http://geek.itheima.net/v1_0/channels'
 
-function A() {
-  return (
-    <div>
-      this is aaa
-      <B />
-    </div>
-  )
-}
-function B() {
-  const msg = useContext(MsgContext)
-  return <div>this is bbb，{msg}</div>
-}
 function App() {
-  const msg = 'this is appMsg'
+  const [list, setList] = useState([])
+  useEffect(() => {
+    async function getList() {
+      const res = await fetch(URL)
+      const jsonRes = await res.json()
+      setList(jsonRes.data.channels)
+    }
+    getList()
+  }, [])
   return (
     <div className="App">
-      <MsgContext.Provider value={msg}>
-        this is app
-        <A />
-      </MsgContext.Provider>
+      <ul>
+        {list.map(item => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
     </div>
   )
 }
