@@ -1,18 +1,25 @@
-function Son(props) {
-  console.log('props: ', props)
+import { useState } from 'react'
+
+function Son({ onGetSonMsg }) {
+  const sonMsg = 'Son'
   return (
     <div>
-      this is son，{props.name}，{props.child}，{props.children}
+      this is Son
+      <button onClick={() => onGetSonMsg(sonMsg)}>sendMsg</button>
     </div>
   )
 }
 function App() {
-  const name = 'this is app name '
+  const [msg, setMsg] = useState('')
+  const getMsg = msg => {
+    console.log('msg: ', msg)
+    setMsg(msg)
+  }
   return (
     <div className="App">
-      <Son name={name} age={18} isTrue={false} list={['vue', 'react']} cb={() => console.log(1)} child={<span>123</span>} >
-        <span>222</span>
-      </Son>
+      this is app
+      <Son onGetSonMsg={getMsg}></Son>
+      {msg}
     </div>
   )
 }
