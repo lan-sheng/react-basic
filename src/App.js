@@ -1,14 +1,10 @@
-import './index.css';
-const style = {
-  color: 'red',
-  fontSize: '50px',
-}
+import { useState } from 'react'
+
 function App() {
+  const [value, setValue] = useState('')
   return (
     <div className="App">
-      {/* <span style={{ color: 'red',fontSize:'30px ' }}>aaa</span> */}
-      <span style={style}>aaa</span>
-      <span className="bbb">bbb</span>
+      <input type="text" value={value} onChange={e => setValue(e.target.value)} />
     </div>
   )
 }
