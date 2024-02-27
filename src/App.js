@@ -1,17 +1,13 @@
-import { useState } from 'react'
-
-function useToggle() {
-  const [value, setValue] = useState(true)
-  const toggle = () => setValue(!value)
-  return { value, toggle }
-}
-
+import { useDispatch, useSelector } from 'react-redux'
+import { inscrement, decrement } from './store/modules/counterStore'
 function App() {
-  const { value, toggle } = useToggle()
+  const { count } = useSelector(state => state.counter)
+  const dispatch = useDispatch()
   return (
     <div className="App">
-      <button onClick={toggle}>toggle</button>
-      {value && <div>this is div</div>}
+      <button onClick={() => dispatch(decrement())}>-</button>
+      {count}
+      <button onClick={() => dispatch(inscrement())}>+</button>
     </div>
   )
 }
